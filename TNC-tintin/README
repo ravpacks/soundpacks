@@ -1,5 +1,14 @@
-Hello, and welcome to Tintin++ The-Night soundpack, version 1, by Jason. This pack is still under heavy construction, and work. First let me say thank you to a ocuple 
-friends, who helped supply a couple of sounds.
+Hello. This is the tintin++ soundpack, version 1 for The night by Jason. This soundpack is under heavy construction, as it's the first version, and will be updated as I go. If you have any suggestions, comments, feature requests, or bugs, please send an email to:
+soundpacks at mail dot com
+Note: replace "at" with  "@" and "dot" with a "."
+with:
+Client, Game, Complaint/bug/comment/feature request 
+in the subject line and the message in the body. An example would be:
+Subject: tintin, the night, feature request
+and in the body something like
+Can you please add sounds to dogs.
+
+This soundpack, as well as my others are licensed under the LGPL license. You may modify, distribute, and claim work on these packs, as long as the original author has been credited. I make no claims to any guarantee, warranty, or liability for these packs, as well as it is not my responsibility for lack of sleep due to game play.
 
 ### installation and running:
 1. install tintin. This was installed on my machine, running ArchLinux, so the package can be gotten from the Arch User Repository using your favorite search tool. 
