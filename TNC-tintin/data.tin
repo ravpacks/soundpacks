@@ -1,0 +1,18 @@
+#CLASS {data} OPEN
+
+#VARIABLE         {gun1}  {none}
+#VARIABLE         {gun2}  {none}
+#VARIABLE         {gun3}  {none}
+#VARIABLE         {holster1}  {none}
+#VARIABLE         {holster2}  {none}
+#VARIABLE         {holster3}  {none}
+#VARIABLE         {mycar}  {none}
+#VARIABLE         {phone1}  {none}
+#VARIABLE         {phone2}  {none}
+#VARIABLE         {pull1}  {none}
+#VARIABLE         {pull2}  {none}
+#VARIABLE         {sheath1}  {none}
+#VARIABLE         {sheath2}  {none}
+#VARIABLE         {vol}  {.4}
+
+#CLASS {data} CLOSE

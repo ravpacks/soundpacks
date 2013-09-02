@@ -1,0 +1,113 @@
+Hello, and welcome to Tintin++ The-Night soundpack, version 1, by Jason. This pack is still under heavy construction, and work. First let me say thank you to a ocuple 
+friends, who helped supply a couple of sounds.
+
+### installation and running:
+1. install tintin. This was installed on my machine, running ArchLinux, so the package can be gotten from the Arch User Repository using your favorite search tool. 
+Search for and download Tintin. Mine is cower, so here is the example:
+cower -d tintin
+then go into the folder, and build it, and install it:
+cd tintin
+makepkg -s
+sudo pacman -U tintin
+note: use tab complete after tintin, to finish as your naming scheme wil be different than mine.
+if using Ubuntu or other derivitives, a command such as this should work:
+sudo apt-get install tintin
+2. You also need Sox, with .wav support. Again, this is the arch command, so mileage may vary.
+sudo pacman -S sox wavpack
+3. Running the soundpack. You've unzipped the folder, and followed the instructions, so here is the rest.
+Go into the TNC-tintin folder
+cd TNC-tintin
+run tintin loading the pack:
+tt++ tn.tin
+You should be greeted with startup music.
+
+###variables, and setting them up
+There are a number of variables I have helped to configure for the game, but most are empty. The only one pre-set is the volume variable, which on this pack, is set to 
+roughly 40 percent. Here is the variable list to help with customizing your game, and how to set them:
+Setting Volume:
+vol or volume ###
+use a decimal in the ###, such as .25 for 25 percent, or 1.25 for one-hundred twenty-five percent. example is: vol .25 or volume .25
+setting up firearms and holsters
+I suggest using different named guns, and holsters for this to work properly. I have configured up to 3 firearms, and 3 holsters for this. We'll use your first choice of 
+gun, and holster for this:
+set gun1 gunname
+set holster1 holstername
+Examples:
+set gun1 mp-5
+set holster1 rifle sling
+This will always draw an MP-5 from a rifle sling. You can follow the same steps to assign gun2, gun3, holster2, and holster3.
+bladed weapons are the same as firearms, but a different variable. You have two (2) bladed weapons and sheaths that will be saved.
+set pull1 bladename
+set sheath1 sheathname
+Example: set pull1 dagger
+set sheath1 bone sheath
+Always setting our dagger to be pulled from, and sheathed into a bone sheath. Again, I would suggest buying 2 different sheath types for this not to be confused. To set 
+the second blade and sheath, use pull2 and sheath2.
+Phones:
+Most people have 1 phone, but some have 2. I have 2 slots you can save a phone in. To set:
+set phone1 phonename
+set phone2 phonename
+If you have two of the same phone, use more of a name to match correctly. Example with a longer name would be:
+set phone1 thin midnight black
+Cars:
+Not everyone has a car, but here is how to set it if you do:
+set mycar car name
+Again, you can use a one name setup, or a longer string to match if you know someone had a car like your make. Two examples are:
+set mycar bmw
+set mycar black bmw convertable coupe
+
+Variables to be saved can be as few, or as many words as you wish.
+
+### aliases
+There are many aliases I ahve used to help with some ease of typing. They were cleared by the hosts, so all are safe. Thre are no botting scripts, and I refuse to build 
+them in, so don't even bother emailing me and asking for anything like it.
+There aliases are:
+ltime - gets your computer's time and date
+od - open door
+cd - close door
+ld - lock door
+ud - unlock door
+gd - go door
+og - open gate
+cg - close gate
+ug - unlock gate
+lg - lock gate
+gg - go gate
+ga - go arch
+gb - go bridge
+os - open step/stair
+cs - close step/stair
+us - unlock step/stair
+ls - lock step/stair
+gs - go step/stair
+Note for steps and stairs. The aliases have worked for every step, stair, or anything containing either of those words I have run across. If you find a place that they 
+don't, please let me know, and I'll fix them/add to them.
+t1 - talk on first saved phone
+t2 - talk on second saved phone
+text1 - text with irst saved phone
+text2 - text with second saved phone
+phone1 - use first saved phone
+phone2 use second saved phone
+Note on pones: These were saved in variables above. You still have to pull it out of it's case/backpackpocket and have it in your hand for this to work.
+draw1 - get your first saved gun
+wield1 - wield your first saved gun, if in hand
+holster1 - put your first saved gun in your first saved holster
+Note for firearms: the same   can be used for draw2, wield2, holster2, as well as draw3, wield3, and holster3. All are set in variables explained above.
+pull1 - draw your first saved bladed weapon
+pull2 draw your second saved bladed weapon
+pwield1 wield your first saved bladed weapon
+pwield2 - wield your second saved bladed weapon
+sheath1 - put your first saved bladed weapon in your first saved sheath
+sheath2 - put your second saved bladed weapon in your second saved sheath
+sh targetname - shoots your targetname
+oc - open your saved car
+cc - close your saved car from outside
+uc - unlock your car if outside
+lc - lock your car if outside
+gc - go in your car if outside
+
+
+### final notes for now
+As I said, this is somewhat of a starter soundpack to help the visually impaired. It is constantly being worked on, and added to, and eventually will have more vehicle 
+sounds, and other activities sounded off as well. Give me time please to addthings if you ask for them, this isn't an overnight thing. Hopefully this is enough for now, 
+and as things will bechanging, I will be changing the pack to keep up. Thank you for using my soundpack.

@@ -1,0 +1,622 @@
+#NOP sound and math alias
+#alias {play %0.%1}
+{
+#system play -v $vol ./sounds/"%0.%1" -q &;
+#gag {^[[0m#OK: EXECUTING %0}
+}
+#alias {{vol|volume} %1}
+{
+        #variable {vol} {%1};
+        #showme {Sound volume now at %1.}
+}
+#function {math}
+{
+    #math result {%0}
+}
+
+#NOP connection and settings
+#EVENT {SESSION CONNECTED}
+{
+#class data read data.tin;
+play Themes/1.wav
+}
+  
+#session tn the-night.com 2000
+#split 0 0
+#config {command echo} off
+#gag {^$}
+#alias {quit}
+{
+play Misc/Disconnect.wav;
+#class data write data.tin;
+{quit};
+#end
+}
+ 
+
+#NOP setting variables
+#alias {set phone1 %1}
+{
+#variable {phone1} {%1};
+#showme {Your main phone is set to %1}
+}
+#alias {set phone2 %1}
+{
+#variable {phone2} {%1};
+#showme {Your second phone is set to %1.}
+}
+#alias {set mycar %1}
+{
+#variable {mycar} {%1};
+#showme {Your car is set to %1}
+}
+#alias {set holster1 %1} 
+{
+#variable {holster1} {%1};
+#showme {%1 is your first holster.}
+}
+#alias {set holster2 %1}
+{
+#variable {holster2} {%1};
+#showme {%1 is your second holster.}
+}
+#alias {set holster3 %1} 
+{
+#variable {holster3} {%1};
+#showme {%1 is your third holster.}
+}
+#alias {set gun1 %1} 
+{
+#variable {gun1} {%1};
+#showme {Your main gun is %1.}
+}
+#alias {set gun2 %1}
+{
+#variable {gun2} {%1};
+#showme {Your secondary gun is %1.}
+}
+#alias {set gun3 %1}
+{
+#variable {gun3} {%1};
+#showme {Your third gun is %1.}
+}
+#alias {set pull1 %1}
+{
+#variable {pull1} {%1};
+#showme {%1 will be drawn from your first sheath.}
+}
+#alias {set pull2 %1}
+{
+#variable {pull2} {%1};
+#showme {%1 will be drawn from your second sheath.}
+}
+#alias {set sheath1 %1}
+{
+#variable {sheath1} {%1};
+#showme {%1 is now your first sheath}
+}
+#alias {set sheath2 %1} 
+{
+#variable {sheath2} {%1};
+#showme {%1 is now your second sheath.}
+}
+#action {There is %0 here.}
+{
+#regexp {%0} {{step|steps}} {#variable {step} {step}};
+#regexp {%0} {{stairs|stairway|staircase}} {#variable {step} {stair}};
+#regexp {%0} {coin} {play Misc/coin.wav}
+}
+
+#NOP aliases
+#alias {spellcheck %1} {#system spellcheck %1}
+#alias {ltime} {#system date}
+#alias {od} {open door} {}
+#alias {cd} {close door} {}
+#alias {ld} {lock door} {}
+#alias {ud} {unlock door} {}
+#alias {gd} {go door} {}
+#alias {ug} {unlock gate} {}
+#alias {og} {open gate} {}
+#alias {lg} {lock gate} {}
+#alias {cg} {close gate} {}
+#alias {gg} {go gate} {}
+#alias {ga} {go arch} {}
+#alias {gb} {go bridge} {}
+#alias {gs} {go $step}
+#alias {os} {open $step}
+#alias {cs} {close $step}
+#alias {us} {unlock $step}
+#alias {ls} {lock $step}
+#alias {t1 %1} {-$phone1 %1}
+#alias {t2 %1} {-$phone2 %1}
+#alias {text1} {text $phone1}
+#alias {text2} {text $phone2}
+#alias {phone1} {use $phone1}
+#alias {phone2} {use phone2}
+#alias {draw1} {get $gun1}
+#alias {wield1} {wield $gun1}
+#alias {holster1} {put $gun1 in $holster1} 
+#alias {draw2} {get $gun2}
+#alias {wield2} {wield $gun2}
+#alias {holster2} {put $gun2 in $holster2}
+#alias {draw3} {get $gun3}
+#alias {wield3} {wield $gun3}
+#alias {holster3} {put $gun3 in $holster3}
+#alias {pull1} {get $pull1 from $sheath1}
+#alias {pwield1} {wield $pull1}
+#alias {sheath1} {put $pull1 in $sheath1}
+#alias {pull2} {get $pull2}
+#alias {pwield2} {wield $pull2}
+#alias {sheath2} {put $pull2 in $sheath2}
+#alias {sh %1} {shoot %1} 
+#alias {uc} {unlock $mycar}
+#alias {oc} {open $mycar}
+#alias {gc} {go $mycar}
+#alias {lc} {lock $mycar}
+#alias {cc} {close $mycar}
+
+ #NOP action
+#action {You unlock {a|an} %1 {door|doors}.}
+{
+play Action/Unlock.wav;
+#line gag
+}
+#action {You lock {a|an} %1 {door|doors}.}
+{
+play Action/Lock.wav;
+#line gag
+}
+#action {{A|An} %1 {door|doors} isn't open}
+{
+play Misc/AlreadyClosed.wav;
+#line gag
+}
+#action {You open {a|an} %1 {door|doors}.}
+{
+play Action/DoorOpen.wav;
+#line gag
+}
+#action {You close {a|an} %1 {door|doors}.}
+{
+play Action/DoorClose.wav;
+#line gag
+}
+#action {That's locked!}
+{
+play Action/DoorRattle.wav;
+#line gag
+}
+#action {That's already {closed|locked}!}
+{
+play Action/DoorRattle.wav;
+#line gag
+}
+#action {You don't have a free hand.} 
+{
+play Action/ArmsFull.wav;
+#line gag
+}
+#action {%1 looks like %2 would like to give you %3 but your hands are full.} 
+{
+play Action/ArmsFull.wav;
+#showme {%1 wants to give you %3};
+#line gag
+} 
+#action {You don't have a free hand!} 
+{
+play Action/ArmsFull.wav;
+#line gag
+}
+#action {You suddenly become tired and %1} 
+{
+play Action/Tired.wav;
+#line gag
+}
+#action {You sift and find what appears to be some gold... until you see that it's actually a fish head. You toss it back.} 
+{
+play Action/Sifting.wav;
+#showme {Yuck, a fish head!};
+#line gag
+}
+#action {You sift until you grasp hold of something...%1} 
+{
+play Action/Sifting.wav;
+#showme {%1};
+#line gag
+}
+#action {You sift through the stream bed and come up with %1} 
+{
+play Action/Sifting.wav;
+#showme {%1};
+#line gag
+}
+#action {Your sifting results in %1} 
+{
+play Action/Sifting.wav;
+#showme {%1};
+#line gag
+} 
+#action {You pull a gold tooth out of the river. %1} 
+{
+play Action/Sifting.wav
+}
+#action {You grasp hold of a huge gold nugget, possibly the biggest ever found and... oh no! You dropped it back in the river! Shame.} 
+{
+play Action/Sifting.wav
+}
+#action {You sift through the stream bed but come up with nothing.} 
+{
+play Action/Sifting.wav;
+#line gag
+}
+#action {%1 sifts through the stream bed and comes up with %2} 
+{
+play Action/SiftingOther.wav;
+#line gag
+}
+#action {You stand up.} 
+{
+play Action/Stand.wav;
+#line gag
+}
+#action {You take a seat on %1} 
+{
+play Action/Sit.wav;
+#showme {%1};
+#line gag
+}
+#action {You sit down %1} 
+{
+play Action/Sit.wav
+}
+
+#NOP combat
+#action {You are now wielding %1. You must keep it in your hands in order to utilize it in combat.} 
+{
+#regexp {%1} {{pistol|submachine gun|light machine gun|shotgun|rifle}}
+{
+play Combat/DrawPistol.wav;
+#line gag
+};
+#else
+{
+play Combat/WieldKnife.wav;
+#line gag
+}
+}
+/*
+#action {You've been attacked! A * rushes towards you. You deftly evade the attack!} {
+#gagline voice;
+#say {you evade}
+#action {You've been attacked! * rushes towards you. You wince as the attack connects!} {
+#gagline voice;
+playCombat/Oof.wav
+#action {* BattleTNC * has taken * point(s) of damage *} {
+#gagline voice;
+#say  {You take %1 points}*/
+#gag {The gunshot from %1 {pistol|submachine gun|light machine gun|shotgun|rifle}%2in your %3 hand echoes loudly throughout the area.} 
+#action {You fire %1 at %2} 
+{
+#regexp {%1} {pistol} 
+{
+play Combat/Pistol/Gunfire@math{1d2}.wav;
+#variable {gunshot} {pistol};
+#line gag
+};
+#else
+{;
+#regexp {%1} {submachine gun} 
+{
+play Combat/MG/SMG@math{1d2}.wav;
+#variable {gunshot} {smg};
+#line gag
+}
+}
+}
+#action {%1your bullet misses a firing range target which is %2 feet away!} 
+{
+#if {"$gunshot" == "pistol"}
+{
+#delay {0.25} {play Combat/Miss/@math{1d4}.wav};
+#line gag
+};
+#elseif {"$gunshot" == "smg"}
+{
+#delay {0.25} {play Combat/Miss/Misses@math{1d2}.wav};
+#line gag
+}
+}
+#action {You carefully aim and fire %1 at %2} 
+{
+#regexp {%1} {pistol} 
+{
+play Combat/Pistol/GunFire@math{1d2}.wav;
+#variable {gunshot} {pistol};
+#line gag
+};
+#regexp {%1} {submachine gun} 
+{
+play Combat/MG/SMG@math{1d2}.wav;
+#variable {gunshot} {smg};
+#line gag
+};
+#regexp {%1} {light machine gun}
+{
+play Combat/MG/LMG@math{1d3}.wav;
+#variable {gunshot} {smg};
+#line gag
+}
+}
+/*#action {You fall to the ground!} {
+#gagline voice;
+playCombat/OofCollapse.wav
+#action {A * winces in pain as the attack connects!} {
+#gagline voice;
+#alarm 0.65 {playCombat/BloodSplat3.wav}
+#action {The gunshot from a * handgun in *'s hand echoes loudly throughout the area.} {
+#gagline voice;
+playCombat/OtherShot.wav
+#action {* fires a * handgun at *. * deftly evades the attack!} {
+#gagline voice;
+#alarm 0.65 {playCombat/Miss/4.wav}
+#action {* deftly evades your attack!} {
+#gagline voice;
+#alarm 0.65 {playCombat/Miss/4.wav}
+*/
+
+#NOP communication
+#action {< Local OOC > %1: "%2"}
+{
+play Communication/LOOC.wav
+}
+#action {%1OOC: ] %2: "%3"} 
+{
+play Communication/OOC.wav
+}
+#action {OOC deactivated. %1} 
+{
+play Communication/OOCoff.wav;
+#line gag
+}
+#action {OOC now on channel %1.} 
+{
+play Communication/OOCOn.wav;
+#showme {%1};
+#line gag
+}
+#action {You activate a %1 radio%2} 
+{
+play Communication/Tune.wav;
+#line gag
+}
+#action {You deactivate a %1 radio%2} 
+{
+play Communication/RadioOff.wav;
+#line gag
+}
+#action {You tune %1 radio%2to %3.}
+{
+play Communication/Tune.wav;
+#showme {%3};
+#line gag
+}
+#action {(Radio Channel %1) %2 transmits with %3, "%4"} 
+{
+play Communication/Radio.wav
+}
+#action {You push a small button on a radio. You will now hear your own transmissions.} 
+{
+play Communication/EchoOn.wav
+}
+#action {You push a small button on a radio. You will no longer hear your own transmissions.} 
+{
+play Communication/EchoOff.wav
+}
+#action {You push a small button on %1 radio%2. You will now hear your own transmissions.} 
+{
+play Communication/EchoOn.wav
+}
+#action {You push a small button on %1 radio%2 You will no longer hear your own transmissions.} 
+{
+play Communication/EchoOff.wav
+}
+#action {You lean close to %1 and whisper, "%2"} 
+{
+play Communication/WhisperTo.wav
+}
+#action {%1 leans close to you and whispers, %2"} 
+{
+play Communication/WhisperFrom.wav
+}
+#action {%1 says to you, "%2"} 
+{
+play Communication/SayToYou.wav
+}
+#action {%1 says with %2, "%3"} 
+{
+play Communication/Says.wav
+}
+#action {You say with %1 accent, "%2"} 
+{
+play Communication/Says.wav
+}
+#action {%1 asks with %2, "%3"} 
+{
+play Communication/Asks.wav
+}
+#action {You ask with %1 accent, "%2?"} 
+{
+play Communication/Asks.wav
+}
+#action {%1 exclaims with %2 accent, "%3!"} 
+{
+play Communication/Exclaim.wav
+}
+#action {You recognize the sound as your telephone's text message tone.} 
+{
+play Phone/Text.wav;
+#line gag
+}
+#action {From a %1 phone you hear %2 voice say with %3, "%4"} 
+{
+play hone/CellTalk.wav
+}
+#action {You say into a %1 phone, "%2"} 
+{
+play Phone/CellTalk.wav
+}
+
+#NOP misc
+#action {< Local OOC > %0 is AFK. If you feel he is doing this to avoid role-play, please ASSIST immediately.}
+{
+play Misc/AFK.wav
+}
+#action {< Local OOC > %1 has returned from AFK. %2 was away for %3.}
+{
+play Misc/AFKReturn.wav
+}
+
+
+#action {A white-tailed deer bounds %1.}
+{
+play Misc/Steps/@math{1d10}.wav
+}
+#action {*** Connected ***}
+{
+play Misc/Reconnected.wav;
+#line gag
+}
+#action {%1 has entered the night.%2} 
+{
+play Misc/LogIn.wav
+}
+#action {%1 has left the night.%2} 
+{
+play Misc/LogOut.wav
+}
+#action {%1Roundtime expired.%2} 
+{
+play Action/RoundTime.wav;
+#line gag
+}
+#action {You put %1 in %2.} 
+{
+#regexp {%2} {{holster|sling}} 
+{
+play Combat/Holster.wav;
+#line gag
+};
+#regexp {%2} {sheath} 
+{
+play Combat/SwordInSheath.wav;
+#line gag
+};
+#else
+{
+play Action/PutIn.wav
+}
+}
+#action {You get %1 from %2.} 
+{
+#regexp {%2} {{holster|sling}} 
+{
+play Combat/Draw.wav;
+#line gag
+};
+#regexp {%2} {sheath} 
+{
+play Combat/SwordDraw.wav;
+#line gag
+};
+#else
+{
+play Action/PutIn.wav
+}
+}
+#action {You sell %1 for $%2.} 
+{
+play Misc/Credits@math{1d3}.wav;
+#showme {%2 dollars.};
+#line gag
+}
+
+#NOP vehicle
+#action {The %1 train quietly departs, gaining enormous momentum within moments.}
+{
+play Communication/PA@math{1d9}.wav;
+#showme {%1 train, now departing!};
+#delay {.15} {play Vehicle/TrainLeaves.wav};
+#line gag
+}
+#action {Quietly, the%1 train comes to a full stop and the doors glide open.}
+{
+play Communication/PA@math{1d9}.wav;
+#showme {%1 train, now arriving!};
+#delay {.15} {play Vehicle/TrainArrives.wav};
+#line gag
+}
+/*
+#action {The glowing blue LED strip above the door on the %1 train flashes, "%2 - Departs in 1 minute and 15 seconds."}
+*/
+#action {[%1; Main Cabin]}
+{
+play Vehicle/EnterTrain.wav
+}
+#action {The train smoothly and quietly begins its journey.}
+{
+play Vehicle/TrainLeavesInside.wav;
+#line gag
+}
+#action {A speaker above sounds clearly, "We are now en route to %1. Our ETA is %2 seconds."}
+{
+play Communication/PA@math{1d9}.wav;
+#showme {Now en route to %1. ETA %2 seconds!};
+#line gag
+}
+#action {The train smoothly comes to a halt.}
+{
+play Vehicle/TrainArrivesInside.wav;
+#line gag
+}
+#action {A speaker above sounds clearly, "We are now arriving at the %1 terminal of Velocity Rail. If this is your destination, thank you for traveling with us."}
+{
+play Communication/PA@math{1d9}.wav;
+#showme {Now arriving at %1 terminal of Velocity Rail. Thank you for riding with us.}; 
+#line gag
+}
+
+
+#NOP logging
+#alias {log}
+{
+	#if {"%0" == "on"}
+	{
+		#if {"$logging" != "on"}
+		{
+			#format {logfile} {logs/%t.html} {%Y-%m-%d};
+			#log append $logfile;
+			#var logging on
+		};
+		#else
+		{
+			#showme You are already logging.
+		}
+	};
+	#elseif {"%0" == "off"}
+	{
+		#if {"$logging" == "on"}
+		{
+			#log off;
+			#var logging off
+		};
+		#else
+		{
+			#showme You are not logging.
+		}
+	};
+	#else
+	{
+		#showme Turn logging on or off?
+	}
+}
+
